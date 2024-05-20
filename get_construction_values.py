@@ -3,7 +3,7 @@ import pprint
 
 
 def read_climate_zone_data(df):
-    # Initialize dictionary to store data for each climate zone
+    # Initialize dictionary to store data for each climate zone.
     climate_data = {}
     climate_zone = None
 
@@ -21,8 +21,9 @@ def read_climate_zone_data(df):
                 envelope_parameter = list_of_row_values[0]
                 if envelope_parameter not in climate_data[climate_zone].keys():
                     climate_data[climate_zone][envelope_parameter] = list_of_row_values[1:]
-                # else:
-                #     climate_data[climate_zone][envelope_parameter + '2'] = list_of_row_values[1:]
+                else:
+                    #todo Debug
+                    climate_data[climate_zone][f"{envelope_parameter}2"] = list_of_row_values[1:]
 
     return climate_data
 
@@ -50,10 +51,18 @@ def reformat_construction_values(file_path, climate_zone):
             'Steel-framed': 'Metal Frame',
             'Wood-framed and other': 'Wood Frame',
             'Below-grade wall': 'Below Grade',
+        },
+        'Floor': {
+            'Mass2': 'Mass',
+            'Steel joist': 'Steel Joist',
+            'Wood-framed and other2': 'Wood Frame',
+        },
+        'Slab-on-Grade Floor': {
+            'Unheated': 'Unheated',
+            'Heated': 'Heated'
         }
     }
 
-    # data = [['tom', 10], ['nick', 15], ['juli', 14]]
     data = []
 
     for surface_category, surface_types in surface_type_labels.items():
@@ -65,9 +74,8 @@ def reformat_construction_values(file_path, climate_zone):
 
     # Create the pandas DataFrame
     df = pd.DataFrame(data, columns=['Surface Type', 'R-Value', 'U-Value'])
-    pprint.pprint(df)
+    # pprint.pprint(df)
     return df
 
-
 # file_path = r'C:\Users\ENIEMEYER\Documents\GitHub\energy_goof_troup\ASHRAE 90.1-2019.csv'
-# reformat_construction_values(file_path, '2')
+# pprint.pprint(reformat_construction_values(file_path, '2'))
