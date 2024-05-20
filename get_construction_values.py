@@ -48,7 +48,7 @@ def reformat_construction_values(file_path, climate_zone):
         'Wall': {
             'Mass': 'Mass',
             'Metal building': 'Metal',
-            'Steel-framed': 'Metal Frame',
+            'Steel-framed': 'Steel Frame',
             'Wood-framed and other': 'Wood Frame',
             'Below-grade wall': 'Below Grade',
         },
